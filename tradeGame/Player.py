@@ -1,6 +1,6 @@
 class Player:
 
-    def __init__(self, id:int, username:str, password:str, level:int=1, exp:int=0, rexp:int=30, silver:int=0, gold:int=0, stats:dict={'hp':10,'max_hp':10,'energy':100,'max_energy':100,'atk':1,'def':1,'crit':0,'lifesteal':0}, inventory:list=None, equipped:dict={'head':None,'body':None,'weapon':None,'shield':None,'legs':None,'feet':None,'pet':None,'amulet':None,}):
+    def __init__(self, id:int, username:str, password:str, level:int=1, exp:int=0, rexp:int=90, silver:int=0, gold:int=0, stats:dict={'hp':10,'max_hp':10,'energy':100,'max_energy':100,'atk':1,'def':1,'crit':0,'lifesteal':0}, inventory:list=None, equipped:dict={'head':None,'body':None,'weapon':None,'shield':None,'legs':None,'feet':None,'pet':None,'amulet':None,}):
         self.id = id
         self.username = username
         self.password = password #TODO: crpytofy this in future
@@ -27,17 +27,22 @@ class Player:
 
     
     def level_up(self):
-        if self.exp >= self.rexp:
+        while self.exp >= self.rexp:
             #Level up!
             self.rexp = round(self.rexp * 1.13)
-            self.exp = 0
             self.level += 1
+            print(self.username+' just reached level '+str(self.level)+'!')
             #Add +10 to hp and energy, +1 to other stats.
             for stat in self.stats:
-                if stat == 'hp' or stat == 'energy':
-                    stat += 10
-                else:
-                    stat += 1
+                if stat is not 'lifesteal':
+                    if stat == 'max_hp' or stat == 'max_energy':
+                        self.stats[stat] += 10
+                    if stat == 'hp' or stat == 'energy':
+                        self.stats[stat] = self.stats['max_'+stat]
+                    else:
+                        self.stats[stat] += 1
+            print(self.stats)
+        self.exp = 0
 
     def change_cash(self,g_s:str,amount:int=0):
         '''
