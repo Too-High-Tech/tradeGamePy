@@ -1,5 +1,6 @@
 class Player():
 
+    
     def __init__(self, id:int, name:str, password:str, level:int=1, exp:int=0, rexp:int=90, silver:int=0, gold:int=0,stats:dict=None, inventory:list=None, equipped:dict=None):
         self.id = id
         self.name = name
@@ -12,8 +13,7 @@ class Player():
         if stats is None:
             self.stats = {'hp':10,'max_hp':10,'energy':100,'max_energy':100,'atk':1,'defence':1,'crit':0,'lifesteal':0}
         else:
-            self.stats = stats
-        
+            self.stats = stats    
         if inventory is None:
             self.inventory = []
         else:
@@ -23,8 +23,7 @@ class Player():
         else:
             self.equipped = equipped
         self.combat_stats = None
-        self.update_combat_stats()
-            
+        self.update_combat_stats()        
 
     
     def gain_exp(self,amount):
@@ -51,6 +50,7 @@ class Player():
             self.stats['energy'] = self.stats['max_energy']
             self.update_combat_stats()
         self.exp = 0
+
 
     def change_cash(self,g_s:str,amount:int=0):
         '''
@@ -82,6 +82,7 @@ class Player():
         else:
             return False
 
+
     def attack(self,target):
         if target is not None:
             print(self.name+' attacking '+target.name)
@@ -96,14 +97,16 @@ class Player():
             target.take_damage(self,dmg_value)
         else:
             print('Target is none.')
-        
+
+
     def take_damage(self,source,damage):
         if source.stats['hp'] >= 1:
             self.stats['hp'] -= damage
             print(self.name+' took '+str(damage) +' damage.  '+str(self.stats['hp'])+' / '+str(self.combat_stats['max_hp']))
             if self.stats['hp'] <= 0:
                 self.death()
-    
+
+
     def death(self):
         if self.stats['hp'] <= 0:
             self.stats['hp'] = 0
@@ -135,33 +138,43 @@ class Player():
         else:
             return player_stats
 
+
     def update_combat_stats(self):
         self.combat_stats = self.calculate_item_stats()
         print('Core Stats: '+str(self.stats))
         print('Total Stats: '+str(self.combat_stats))
 
+
     def use_item(self, item):
         '''
-        Equips or consumes item based on item.type's property
+        Equips or consumes item based on Item.type
         '''
         if item in self.inventory:   
             if item.itype == 'Use':
                 #Item is equippable
                 if self.equipped[item.slot] is not None:
                     #Item already equipped in slot, unequip then equip this item.
-                    print(str(self.equipped[item.slot])+' unequipped.')
-                    self.inventory.append(self.equipped[item.slot])
+                    self.unequip(self.equipped[item.slot])
                     self.inventory.remove(item)
                     self.equipped[item.slot] = item
                     print(str(item)+' equipped')
-                    self.update_combat_stats()
                 elif self.equipped[item.slot] is None:
                     #Nothing is equipped in this slot, equip the item.
                     self.inventory.remove(item)
                     self.equipped[item.slot] = item
                     print(str(item)+' equipped')
-                    self.update_combat_stats()
             elif item.itype == 'Consume':
                 pass
         else:
             print('You cannot equip an item that is not in your inventory')
+
+        self.update_combat_stats()
+
+
+    def unequip(self, item):
+        for slot in self.equipped:
+            if item == self.equipped[slot]:
+                self.equipped[slot] = None
+                self.inventory.append(item)
+                self.update_combat_stats()
+                print(str(item)+' unequipped.')

@@ -12,6 +12,7 @@ class Enemy():
         else:
             self.stats = stats
 
+
     def take_damage(self,source,damage):
         if source.stats['hp'] >= 1:
             self.stats['hp'] -= damage
@@ -21,6 +22,7 @@ class Enemy():
             else:
                 self.retaliate(source)
 
+
     def retaliate(self,target):
         print(self.name+' attacking '+target.name)
         atk_value = self.stats['atk']
@@ -29,6 +31,7 @@ class Enemy():
         dmg_value = round(atk_value - def_value)
         target.take_damage(self,dmg_value)
     
+
     def death(self,source):
         exp_reward = round(self.rarity * self.stats['max_hp'])
         silver_reward = round(self.level * self.rarity * 1.10)
@@ -37,6 +40,7 @@ class Enemy():
             source.gain_exp(exp_reward)
             source.change_cash('s',silver_reward)
             dice = randint(1,100)
+            print(dice)
             if dice in range(60,101): #40% chance to drop loot.
                 #Loot dropped.
                 silver_reward = round(silver_reward * 1.5)
