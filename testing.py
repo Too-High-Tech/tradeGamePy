@@ -4,7 +4,7 @@ from time import sleep
 game = Game()
 
 def new_enemy():
-    nEnemy = game.enemies[0]
+    nEnemy = game.enemies[0].spawn()
     return nEnemy
 
 
@@ -31,7 +31,7 @@ while True:
         
     game.players[0].attack(target)
 
-    sleep(2)
+    sleep(.5)
 
     if game.players[0].stats['hp'] <= 1:
         game.players[0].stats['hp'] = game.players[0].stats['max_hp']

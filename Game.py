@@ -91,21 +91,26 @@ class Game:
     #Each of the following will respectivly retrieve the requested object from the provided ID.
     #ToDO; Consistant generation of object IDs.
     def find_item_by_id(self,item_id):
-        pass
+        for item in self.items:
+            if item.id == item_id:
+                return item
+        else:
+            return False
 
 
     def find_enemy_by_id(self,enemy_id):
-        pass
+        for enemy in self.enemies:
+            if enemy.id == enemy_id:
+                return enemy
+        else:
+            return False
 
 
     def find_player_by_id(self,player_id):
-        pass
-
-
-    #Events
-    def hunt(self,player:Player):
-        '''
-        Generates a worthy opponent for a player to fight, then pits them against one another.
-        '''
+        for player in self.players:
+            if player.id == player_id:
+                return player
+        else:
+            return False
 
 

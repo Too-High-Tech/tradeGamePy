@@ -1,4 +1,5 @@
 from random import randint
+import copy
 
 class Enemy():
     def __init__(self,id,name,level,rarity=1,e_type='Normal', stats:dict=None):
@@ -57,4 +58,6 @@ class Enemy():
             elif self.type == 'Boss':
                 pass
 
-            
+    def spawn(self):
+        instance = copy.deepcopy(self)
+        return instance
