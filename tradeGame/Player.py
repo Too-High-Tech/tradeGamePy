@@ -130,13 +130,15 @@ class Player():
                         item_stats[stat] += item.stat_mods[stat]
             for stat in item_stats:
                 player_stats[stat] += item_stats[stat]
-            print(str(player_stats))
+            #print(str(player_stats))
             return player_stats
         else:
             return player_stats
 
     def update_combat_stats(self):
         self.combat_stats = self.calculate_item_stats()
+        print('Core Stats: '+str(self.stats))
+        print('Total Stats: '+str(self.combat_stats))
 
     def use_item(self, item):
         '''
