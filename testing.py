@@ -15,8 +15,6 @@ def new_enemy():
 # game.enemies.append(wolf)
 # game.save_resources()
 
-
-
 ##
 #Combat Testing
 ##
