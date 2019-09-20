@@ -14,15 +14,15 @@ helm2 = Item(1,'Steel Berserker Helm',1,5,'Use','head',{'defence':15,'atk':2,'li
 weapon = Item(2,'Dragon Scimitar',1,5,'Use','weapon',{'atk':20,'defence':5,'lifesteal':10,'crit':10})
 
 #Add test items to inventory
-player.inventory.append(helm)
+#player.inventory.append(helm)
 player.inventory.append(helm2)
-player.inventory.append(weapon)
+#player.inventory.append(weapon)
 #Equip first test item(s)
-player.use_item(helm)
+#player.use_item(helm)
 #Equip a better helm
 player.use_item(helm2)
 #Equip the weapon
-player.use_item(weapon)
+#player.use_item(weapon)
 
 while True:
     #Select's an enemy (A wolf with = level to the player) and fight to the death, repeat until Ctrl+C.
@@ -32,7 +32,7 @@ while True:
         #target.stats['hp'] = target.stats['max_hp']
         
     player.attack(target)
-    sleep(1)
+    sleep(.5)
     if player.stats['hp'] <= 1:
         player.stats['hp'] = player.stats['max_hp']
     if target.stats['hp'] <= 0:

@@ -42,14 +42,14 @@ class Player():
             print(self.name+' just reached level '+str(self.level)+'!')
             #Add +10 to hp and energy, +1 to other stats.
             for stat in self.stats:
-                if stat is not 'lifesteal':
+                if stat is not 'lifesteal' and stat is not 'crit':
                     if stat == 'max_hp' or stat == 'max_energy':
                         self.stats[stat] += 10
                     else:
                         self.stats[stat] += 1
             self.stats['hp'] = self.stats['max_hp']
             self.stats['energy'] = self.stats['max_energy']
-            print(self.stats)
+            self.update_combat_stats()
         self.exp = 0
 
     def change_cash(self,g_s:str,amount:int=0):
