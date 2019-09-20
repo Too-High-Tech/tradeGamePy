@@ -24,7 +24,7 @@ class Enemy():
     def retaliate(self,target):
         print(self.name+' attacking '+target.name)
         atk_value = self.stats['atk']
-        def_value = target.stats['defence'] / 1000
+        def_value = target.stats['defence'] / 100
         #Determine damage value based on atk of source and defense of self
         dmg_value = round(atk_value - def_value)
         target.take_damage(self,dmg_value)
