@@ -9,9 +9,20 @@
             "hp": 10,
             "max_hp": 10,
             "atk": 1,
-            "defence": 1,
-            "crit": 1,
-            "lifesteal": 0
+            "defence": 1
+        }
+    },
+    {
+        "id": 1,
+        "name": "Wolf Alpha",
+        "level": 5,
+        "rarity": 2,
+        "type": "Normal",
+        "stats": {
+            "atk": 2,
+            "defence": 2,
+            "hp": 15,
+            "max_hp": 15
         }
     }
 ]

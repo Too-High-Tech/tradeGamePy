@@ -4,22 +4,24 @@ import json
 class Game:
     '''
     The main game class holds all game objects.
+    Game.players
+    Game.items
+    Game.enemies
     '''
     def __init__(self):
         self.players = []
         self.items = []
         self.enemies = []
-
         self.load_resources()
 
-    #ToDo;
-    #Create function for loading game prefabs to use in __init__ function.
+
     def load_resources(self):
         filepath = 'tradeGame/resources/'
 
-        self.players = self.load_players(filepath)
         self.items = self.load_items(filepath)
+        self.players = self.load_players(filepath)
         self.enemies = self.load_enemies(filepath)
+
 
     def load_items(self,filepath):
         try:
@@ -33,7 +35,8 @@ class Game:
                 return iresult
         except(IOError,IndexError):
             print('Failed to load item data.')
-        
+
+
     def load_players(self,filepath):
         try:
             with open(filepath+'players.json','r') as f:
@@ -42,11 +45,18 @@ class Game:
                 for player in players:
                     ##Going to encounter a problem serializing item objects in the inventory and equipped dicts.
                     ##could just __dict__ the objects and run each one in the inventory and equipped through a load item function
-                    lPlayer = Player(player['id'], player['name'], player['password'], player['level'], player['exp'], player['rexp'], player['silver'], player['gold'], player['stats'], player['inventory'], player['equipped'])
+                    
+                    lInven = [self.find_item_by_id(el) for el in player['inventory']]
+                    lEquip = {'head':None,'body':None,'weapon':None,'shield':None,'legs':None,'feet':None,'pet':None,'amulet':None}
+                    for slot in player['equipped']:
+                        if player['equipped'][slot] != None:
+                            lEquip[slot] = self.find_item_by_id(player['equipped'][slot])
+                    lPlayer = Player(player['id'], player['name'], player['password'], player['level'], player['exp'], player['rexp'], player['silver'], player['gold'], player['stats'], lInven, lEquip)
                     presult.append(lPlayer)
                 return presult
         except(IOError,IndexError):
             print('Failed to load player data.')
+
 
     def load_enemies(self,filepath):
         try:
@@ -65,27 +75,47 @@ class Game:
 
     def save_resources(self):
         filepath = 'tradeGame/resources'
-
-        with open(filepath+'/items.json','w') as f:
-            nitems = []
-            for item in self.items:
-                item_dict = item.__dict__
-                nitems.append(item_dict)
-            json.dump(nitems,f)
-        
+        self.save_items(filepath)
+        self.save_players(filepath)
+        self.save_enemies(filepath)
+    
+    
+    def save_players(self,filepath):    
         with open(filepath+'/players.json','w') as f:
             nplayers = []
             for player in self.players:
                 player_dict = player.__dict__
+                pinven = []
+                pequip = {'head':None,'body':None,'weapon':None,'shield':None,'legs':None,'feet':None,'pet':None,'amulet':None}
+                for item in player.inventory:
+                    ninven = item.id
+                    pinven.append(ninven)
+                player_dict['inventory'] = pinven
+                for slot in player.equipped:
+                    if player.equipped[slot] is not None:
+                        nequip = player.equipped[slot].id
+                        pequip[slot] = nequip
+                player_dict['equipped'] = pequip
                 nplayers.append(player_dict)
             json.dump(nplayers,f)
 
+
+    def save_enemies(self,filepath):
         with open(filepath+'/enemies.json','w') as f:
             nenemies = []
             for enemy in self.enemies:
                 enemy_dict = enemy.__dict__
                 nenemies.append(enemy_dict)
             json.dump(nenemies,f)
+
+
+    def save_items(self,filepath):
+        with open(filepath+'/items.json','w') as f:
+            nitems = []
+            for item in self.items:
+                item_dict = item.__dict__
+                nitems.append(item_dict)
+            json.dump(nitems,f)
 
 
     #Each of the following will respectivly retrieve the requested object from the provided ID.

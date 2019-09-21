@@ -1,18 +1,19 @@
 from Game import Game, Player, Item, Enemy
 from time import sleep
+from random import randint
 
 game = Game()
 
 def new_enemy():
-    nEnemy = game.enemies[0].spawn()
+    nEnemy = game.enemies[randint(0,1)].spawn()
     return nEnemy
 
 
 ##Saveload testing
 #player = Player(0,'Swoopy','pass')
 #game.players.append(player)
-# wolf = Enemy(0,'Wolf',1,1,'Normal')
-# game.enemies.append(wolf)
+# wolf2 = Enemy(0,'Wolf Alpha',5,2,'Normal',{'atk':2,'def':2,'hp':15,'maxhp':15})
+# game.enemies.append(wolf2)
 # game.save_resources()
 
 ##
@@ -21,6 +22,10 @@ def new_enemy():
 
 target = new_enemy()
 
+player = game.find_player_by_id(0)
+
+
+#print(str(item))
 
 while True:
     #Select's an enemy (A wolf with = level to the player) and fight to the death, repeat until Ctrl+C.
@@ -29,12 +34,12 @@ while True:
         target = new_enemy()
         #target.stats['hp'] = target.stats['max_hp']
         
-    game.players[0].attack(target)
+    player.attack(target)
 
     sleep(.5)
 
-    if game.players[0].stats['hp'] <= 1:
-        game.players[0].stats['hp'] = game.players[0].stats['max_hp']
+    if player.stats['hp'] <= 1:
+        player.stats['hp'] = player.stats['max_hp']
     if target.stats['hp'] <= 0:
         target = None
 

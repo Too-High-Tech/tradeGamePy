@@ -18,11 +18,13 @@
             "crit": 0,
             "lifesteal": 0
         },
-        "inventory": [],
+        "inventory": [
+            1
+        ],
         "equipped": {
             "head": null,
             "body": null,
-            "weapon": null,
+            "weapon": 2,
             "shield": null,
             "legs": null,
             "feet": null,
@@ -34,10 +36,10 @@
             "max_hp": 10,
             "energy": 100,
             "max_energy": 100,
-            "atk": 1,
-            "defence": 1,
-            "crit": 0,
-            "lifesteal": 0
+            "atk": 21,
+            "defence": 6,
+            "crit": 10,
+            "lifesteal": 10
         }
     }
 ]
