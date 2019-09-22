@@ -5,7 +5,7 @@ from random import randint
 game = Game()
 
 def new_enemy():
-    nEnemy = game.enemies[randint(0,1)].spawn()
+    nEnemy = game.enemies[randint(0,2)].spawn()
     return nEnemy
 
 
