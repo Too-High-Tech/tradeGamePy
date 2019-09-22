@@ -1,0 +1,41 @@
+[
+    {
+        "id": 0,
+        "name": "Wolf",
+        "level": 1,
+        "rarity": 1,
+        "type": "Normal",
+        "stats": {
+            "hp": 10,
+            "max_hp": 10,
+            "atk": 1,
+            "defence": 1
+        }
+    },
+    {
+        "id": 1,
+        "name": "Wolf Alpha",
+        "level": 5,
+        "rarity": 2,
+        "type": "Normal",
+        "stats": {
+            "atk": 2,
+            "defence": 2,
+            "hp": 15,
+            "max_hp": 15
+        }
+    },
+    {
+        "id": 2,
+        "name": "Slime",
+        "level": 3,
+        "rarity": 1,
+        "type": "Normal",
+        "stats": {
+            "atk": 1,
+            "defence": 1,
+            "hp": 12,
+            "max_hp": 12
+        }
+    }
+]

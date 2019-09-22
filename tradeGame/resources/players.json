@@ -1,0 +1,45 @@
+[
+    {
+        "id": 0,
+        "name": "Swoopy",
+        "password": "pass",
+        "level": 1,
+        "exp": 0,
+        "rexp": 90,
+        "silver": 0,
+        "gold": 0,
+        "stats": {
+            "hp": 10,
+            "max_hp": 10,
+            "energy": 100,
+            "max_energy": 100,
+            "atk": 1,
+            "defence": 1,
+            "crit": 0,
+            "lifesteal": 0
+        },
+        "inventory": [
+            1
+        ],
+        "equipped": {
+            "head": null,
+            "body": null,
+            "weapon": 2,
+            "shield": null,
+            "legs": null,
+            "feet": null,
+            "pet": null,
+            "amulet": null
+        },
+        "combat_stats": {
+            "hp": 10,
+            "max_hp": 10,
+            "energy": 100,
+            "max_energy": 100,
+            "atk": 21,
+            "defence": 6,
+            "crit": 10,
+            "lifesteal": 10
+        }
+    }
+]
