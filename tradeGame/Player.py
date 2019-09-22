@@ -8,6 +8,7 @@ class Player():
         self.level = level
         self.exp = exp
         self.rexp = rexp
+        self.rank_points = 500
         self.silver = silver
         self.gold = gold
         if stats is None:
