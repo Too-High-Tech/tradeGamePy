@@ -2,10 +2,11 @@
     {
         "id": 0,
         "name": "Swoopy",
-        "password": "pass",
+        "password": "9e9ddb6c987f490a9943178fa62ad9d9cae0a13625da0881e29b88b450e213e22211953c873cb543f1d349542581d844924ea8d5b013d81032cd15555e607d121dfe9ff0529fa9b4ce8844d88dbdc8ac7918444b0986ddddcd8bdb882e6b32e0",
         "level": 1,
         "exp": 0,
         "rexp": 90,
+        "rank_points": 500,
         "silver": 0,
         "gold": 0,
         "stats": {
@@ -40,6 +41,48 @@
             "defence": 6,
             "crit": 10,
             "lifesteal": 10
+        }
+    },
+    {
+        "id": 1,
+        "name": "Caryn",
+        "password": "2b6e3874b108d0c3e7acd4a965fb58876bb80a0df0e259529ad1d3e19205ed68a583bc3fdcfcfec7b9591878c505b08c3d8b1a64e075ddc01ca24b3baf8ec1094b1ae63551e95821a801c0158263e29242affbbfa976ee4b505be6c885a18f23",
+        "level": 1,
+        "exp": 0,
+        "rexp": 90,
+        "rank_points": 500,
+        "silver": 0,
+        "gold": 0,
+        "stats": {
+            "hp": 10,
+            "max_hp": 10,
+            "energy": 100,
+            "max_energy": 100,
+            "atk": 1,
+            "defence": 1,
+            "crit": 0,
+            "lifesteal": 0
+        },
+        "inventory": [],
+        "equipped": {
+            "head": null,
+            "body": null,
+            "weapon": null,
+            "shield": null,
+            "legs": null,
+            "feet": null,
+            "pet": null,
+            "amulet": null
+        },
+        "combat_stats": {
+            "hp": 10,
+            "max_hp": 10,
+            "energy": 100,
+            "max_energy": 100,
+            "atk": 1,
+            "defence": 1,
+            "crit": 0,
+            "lifesteal": 0
         }
     }
 ]

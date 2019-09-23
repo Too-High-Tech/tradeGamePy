@@ -1,3 +1,4 @@
+from random import randint
 class Player():
 
     
@@ -53,6 +54,20 @@ class Player():
         self.exp = 0
 
 
+    def stats_dump(self):
+        items = [item.id for item in self.inventory]
+        equip = {}
+        for slot in self.equipped:
+            if self.equipped[slot] is not None:
+                equip[slot] = self.equipped[slot].id
+            else:
+                equip[slot] = self.equipped[slot]
+        player_dict = self.__dict__
+        player_dict['inventory'] = items
+        player_dict['equipped'] = equip
+        return player_dict
+
+
     def change_cash(self,g_s:str,amount:int=0):
         '''
         Gain amount of gold or silver given
@@ -83,6 +98,16 @@ class Player():
         else:
             return False
 
+    def critical_roll(self):
+        crit_chance = round(self.stats['crit'] * 0.01)
+        roll = randint(crit_chance,100)
+        if roll == 100:
+            #Critical Hit!
+            print('CRITICAL HIT!! 3X DAMAGE!')
+            return True
+        else:
+            return False
+
 
     def attack(self,target):
         if target is not None:
@@ -95,6 +120,8 @@ class Player():
                 def_value = target.stats['defence'] / 100
             #Determine damage value based on atk of source and defense of self
             dmg_value = round(atk_value - def_value)
+            if self.critical_roll() is True:
+                dmg_value = round(dmg_value*3)
             target.take_damage(self,dmg_value)
         else:
             print('Target is none.')

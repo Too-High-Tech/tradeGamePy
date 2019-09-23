@@ -78,7 +78,22 @@ class Game:
         self.save_items(filepath)
         self.save_players(filepath)
         self.save_enemies(filepath)
+        return True
     
+    
+    def add_player(self,username,hashedpass):
+        status = True
+        for player in self.players:
+            if player.name == username:
+                status = False
+        if status == True:
+            nPlayer = Player(len(self.players),username,hashedpass)
+            self.players.append(nPlayer)
+            self.save_players('tradeGame/resources')
+            self.load_players('tradeGame/resources')
+            return True
+        else:
+            return False
     
     def save_players(self,filepath):    
         with open(filepath+'/players.json','w') as f:
@@ -98,6 +113,7 @@ class Game:
                 player_dict['equipped'] = pequip
                 nplayers.append(player_dict)
             json.dump(nplayers,f)
+            return True
 
 
     def save_enemies(self,filepath):
@@ -107,6 +123,7 @@ class Game:
                 enemy_dict = enemy.__dict__
                 nenemies.append(enemy_dict)
             json.dump(nenemies,f)
+            return True
 
 
     def save_items(self,filepath):
@@ -116,6 +133,7 @@ class Game:
                 item_dict = item.__dict__
                 nitems.append(item_dict)
             json.dump(nitems,f)
+            return True
 
 
     #Each of the following will respectivly retrieve the requested object from the provided ID.

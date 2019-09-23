@@ -41,7 +41,7 @@ class Enemy():
             source.gain_exp(exp_reward)
             source.change_cash('s',silver_reward)
             dice = randint(1,100)
-            print(dice)
+            #print(dice)
             if dice in range(60,101): #40% chance to drop loot.
                 #Loot dropped.
                 silver_reward = round(silver_reward * 1.5)
