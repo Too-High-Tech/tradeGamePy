@@ -3,21 +3,21 @@
         "id": 0,
         "name": "Swoopy",
         "password": "9e9ddb6c987f490a9943178fa62ad9d9cae0a13625da0881e29b88b450e213e22211953c873cb543f1d349542581d844924ea8d5b013d81032cd15555e607d121dfe9ff0529fa9b4ce8844d88dbdc8ac7918444b0986ddddcd8bdb882e6b32e0",
-        "level": 1,
-        "exp": 0,
-        "rexp": 90,
+        "level": 13,
+        "exp": 180,
+        "rexp": 391,
         "rank_points": 500,
-        "silver": 0,
+        "silver": 320,
         "gold": 0,
         "stats": {
-            "hp": 10,
-            "max_hp": 10,
-            "energy": 100,
-            "max_energy": 100,
-            "atk": 1,
-            "defence": 1,
-            "crit": 0,
-            "lifesteal": 0
+            "hp": 13,
+            "max_hp": 130,
+            "energy": 220,
+            "max_energy": 220,
+            "atk": 13,
+            "defence": 13,
+            "crit": 12,
+            "lifesteal": 12
         },
         "inventory": [
             1
@@ -33,20 +33,60 @@
             "amulet": null
         },
         "combat_stats": {
-            "hp": 10,
-            "max_hp": 10,
-            "energy": 100,
-            "max_energy": 100,
-            "atk": 21,
-            "defence": 6,
-            "crit": 10,
-            "lifesteal": 10
+            "max_hp": 130,
+            "energy": 220,
+            "max_energy": 220,
+            "atk": 33,
+            "defence": 18,
+            "crit": 22,
+            "lifesteal": 22
         }
     },
     {
         "id": 1,
         "name": "Caryn",
         "password": "2b6e3874b108d0c3e7acd4a965fb58876bb80a0df0e259529ad1d3e19205ed68a583bc3fdcfcfec7b9591878c505b08c3d8b1a64e075ddc01ca24b3baf8ec1094b1ae63551e95821a801c0158263e29242affbbfa976ee4b505be6c885a18f23",
+        "level": 2,
+        "exp": 50,
+        "rexp": 102,
+        "rank_points": 500,
+        "silver": 34,
+        "gold": 0,
+        "stats": {
+            "hp": 1,
+            "max_hp": 20,
+            "energy": 110,
+            "max_energy": 110,
+            "atk": 2,
+            "defence": 2,
+            "crit": 1,
+            "lifesteal": 1
+        },
+        "inventory": [],
+        "equipped": {
+            "head": null,
+            "body": null,
+            "weapon": null,
+            "shield": null,
+            "legs": null,
+            "feet": null,
+            "pet": null,
+            "amulet": null
+        },
+        "combat_stats": {
+            "max_hp": 20,
+            "energy": 110,
+            "max_energy": 110,
+            "atk": 2,
+            "defence": 2,
+            "crit": 1,
+            "lifesteal": 1
+        }
+    },
+    {
+        "id": 2,
+        "name": "Azloth",
+        "password": "c4fbac9c321a4207db506f007ac6b60183605065cc412672a7141adaba13cb131bcb6f6b5f14c3488cb960292dee81e21b3ec482b682fe254ed1bcc46e8e5587af612a6611b4b15dac162d0117bf6245d2743f5b4ba8987b0b0966f4bd0d08ce",
         "level": 1,
         "exp": 0,
         "rexp": 90,
@@ -75,7 +115,6 @@
             "amulet": null
         },
         "combat_stats": {
-            "hp": 10,
             "max_hp": 10,
             "energy": 100,
             "max_energy": 100,

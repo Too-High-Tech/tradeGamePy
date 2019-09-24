@@ -1,6 +1,7 @@
 from tradeGame import Player, Item, Enemy
 import json
 
+
 class Game:
     '''
     The main game class holds all game objects.
@@ -16,14 +17,13 @@ class Game:
 
 
     def load_resources(self):
+        self.load_items()
+        self.load_players()
+        self.load_enemies()
+
+
+    def load_items(self):
         filepath = 'tradeGame/resources/'
-
-        self.items = self.load_items(filepath)
-        self.players = self.load_players(filepath)
-        self.enemies = self.load_enemies(filepath)
-
-
-    def load_items(self,filepath):
         try:
             with open(filepath+'items.json','r') as f:
                 items = json.load(f)
@@ -31,34 +31,34 @@ class Game:
                 for item in items:
                     lItem = Item(item['id'],item['name'],item['levelreq'],item['rarity'],item['itype'],item['slot'],item['stat_mods'])
                     iresult.append(lItem)
-                self.items = iresult
-                return iresult
+            self.items = iresult
         except(IOError,IndexError):
             print('Failed to load item data.')
 
 
-    def load_players(self,filepath):
+    def load_players(self):
+        filepath = 'tradeGame/resources/'
         try:
             with open(filepath+'players.json','r') as f:
                 players = json.load(f)
                 presult = []
                 for player in players:
-                    ##Going to encounter a problem serializing item objects in the inventory and equipped dicts.
-                    ##could just __dict__ the objects and run each one in the inventory and equipped through a load item function
                     
-                    lInven = [self.find_item_by_id(el) for el in player['inventory']]
+                    lInven = [self.find_item_by_id(item) for item in player['inventory']]
                     lEquip = {'head':None,'body':None,'weapon':None,'shield':None,'legs':None,'feet':None,'pet':None,'amulet':None}
                     for slot in player['equipped']:
                         if player['equipped'][slot] != None:
                             lEquip[slot] = self.find_item_by_id(player['equipped'][slot])
                     lPlayer = Player(player['id'], player['name'], player['password'], player['level'], player['exp'], player['rexp'], player['silver'], player['gold'], player['stats'], lInven, lEquip)
+                    
                     presult.append(lPlayer)
-                return presult
+            self.players = presult
         except(IOError,IndexError):
             print('Failed to load player data.')
 
 
-    def load_enemies(self,filepath):
+    def load_enemies(self):
+        filepath = 'tradeGame/resources/'
         try:
             with open(filepath+'enemies.json','r') as f:
                 enemies = json.load(f)
@@ -68,16 +68,15 @@ class Game:
                     ##could just __dict__ the objects and run each one in the inventory and equipped through a load item function
                     lEnemy = Enemy(enemy['id'],enemy['name'],enemy['level'],enemy['rarity'],enemy['type'],enemy['stats'])
                     eresult.append(lEnemy)
-                return eresult
+            self.enemies = eresult
         except(IOError,IndexError):
             print('Failed to load enemy data.')
         
 
     def save_resources(self):
-        filepath = 'tradeGame/resources'
-        self.save_items(filepath)
-        self.save_players(filepath)
-        self.save_enemies(filepath)
+        self.save_items()
+        self.save_players()
+        self.save_enemies()
         return True
     
     
@@ -89,17 +88,19 @@ class Game:
         if status == True:
             nPlayer = Player(len(self.players),username,hashedpass)
             self.players.append(nPlayer)
-            self.save_players('tradeGame/resources')
-            self.load_players('tradeGame/resources')
+            self.save_players()
+            self.load_players()
             return True
         else:
             return False
     
-    def save_players(self,filepath):    
+    def save_players(self):
+        filepath = 'tradeGame/resources/'    
         with open(filepath+'/players.json','w') as f:
+            savable_list = self.players[:]
             nplayers = []
-            for player in self.players:
-                player_dict = player.__dict__
+            for player in savable_list:
+                player_dict = player.__dict__.copy()
                 pinven = []
                 pequip = {'head':None,'body':None,'weapon':None,'shield':None,'legs':None,'feet':None,'pet':None,'amulet':None}
                 for item in player.inventory:
@@ -116,7 +117,8 @@ class Game:
             return True
 
 
-    def save_enemies(self,filepath):
+    def save_enemies(self):
+        filepath = 'tradeGame/resources/'  
         with open(filepath+'/enemies.json','w') as f:
             nenemies = []
             for enemy in self.enemies:
@@ -126,7 +128,8 @@ class Game:
             return True
 
 
-    def save_items(self,filepath):
+    def save_items(self):
+        filepath = 'tradeGame/resources/'  
         with open(filepath+'/items.json','w') as f:
             nitems = []
             for item in self.items:

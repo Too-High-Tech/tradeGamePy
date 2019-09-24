@@ -25,6 +25,7 @@ class Player():
         else:
             self.equipped = equipped
         self.combat_stats = None
+        
         self.update_combat_stats()        
 
     
@@ -55,14 +56,14 @@ class Player():
 
 
     def stats_dump(self):
-        items = [item.id for item in self.inventory]
+        items = [item.id for item in self.inventory[:]]
         equip = {}
         for slot in self.equipped:
             if self.equipped[slot] is not None:
                 equip[slot] = self.equipped[slot].id
             else:
                 equip[slot] = self.equipped[slot]
-        player_dict = self.__dict__
+        player_dict = self.__dict__.copy()
         player_dict['inventory'] = items
         player_dict['equipped'] = equip
         return player_dict
@@ -151,7 +152,7 @@ class Player():
         '''
         
         player_stats = self.stats.copy()
-        item_stats = {'hp':0,'max_hp':0,'energy':0,'max_energy':0,'atk':0,'defence':0,'crit':0,'lifesteal':0}
+        item_stats = {'max_hp':0,'energy':0,'max_energy':0,'atk':0,'defence':0,'crit':0,'lifesteal':0}
         
         if self.equipped is not None:
             for slot in self.equipped:
